@@ -19,3 +19,9 @@ mpi4pytest.py - one of the first python programs created. It utilizes comm.broad
 gdisplayLite.py - the first iteration of a graphical display utilized to organize information into neat little slots. In addition, it also has a definition for testing itself. By running the program itself, it has each node display a sentence including it's rank and active cluster size, before disappearing after six seconds. 
 
 gdisplayMod.py - the second, current, and evolving version of gDL. Standing for "Graphical Display Module", it contains various definitions for aiding in display single-lined and multi-lined data. Information is now displayed in flexable "boxes" that even paragraphs can be sorted into. It contains a more complex testing definition, that when ran, the consent of the master node is required for the displaying of data by each node. The user must go into the file and uncheck the last line however, as it is a module first, program second. 
+
+demoAdd.py - The demonstration program for the entire cluster project. Utilizing the time module for visual purposes, it showcases the parallel process of data generation, manipulation, and computation at a slow enough pace for people to follow along. Each node will display their messages in their boxes, and nothing is neccessarily tied to each other.
+
+multilineTest.py - An additional demonstration to prove the concept of multiline box display. 
+
+paragraphTest.py - An additional demonstration to prove the concept of being able to take a string, split it up, then display it in an organized manner in boxes. It utilizes the "splitPara" definition in gdisplayMod before actually displaying the data. The "linesize" parameter is the only one that must be manually set in the user's program, whether that be inputing an actual number (at least 30 is recommended), or having the number be created within the program.
