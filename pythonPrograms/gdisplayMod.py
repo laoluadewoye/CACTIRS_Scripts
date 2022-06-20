@@ -37,25 +37,25 @@ def graphicsMultiline(info): #displays multi-lined info in order
 	rank = comm.rank
 	boxLength = 0
 		
-	for line in info:
+	for line in info: #Creates the boxlength
 		while (boxLength < len(line)):
-			boxLength += 2
-	boxLength += 2
+			boxLength += 2 #Increases length by two units until it's longer than the phrase in the list
+	boxLength += 2 #A final two units to ensure overshoot and spacing
 	
 	formatedData = ""
 	for i in range(len(info)):
 		while (len(info[i]) < (boxLength)):
-			info[i] = info[i] + " "
-		info[i] = info[i] + "|"
+			info[i] = info[i] + " " #Adds spaces so that-
+		info[i] = info[i] + "|" #-A proper pipe can be in place for the smaller phrase
 		if (i == (len(info) - 1)):
-			formatedData += info[i]
+			formatedData += info[i] #If the last phrase, no additional line is added
 		else:
-			formatedData += (info[i] + "\n")
+			formatedData += (info[i] + "\n") #Adds resulting phrase to a new list
 	
 	
 	dash = "-"
 	for i in range(boxLength):
-		dash = dash + "-"
+		dash = dash + "-" #String of dashes are generated here
 	
 	comm.Barrier()
 	sleep(0.05*rank) #Nodes will end up organizing themselves with delay
@@ -63,36 +63,46 @@ def graphicsMultiline(info): #displays multi-lined info in order
 	print ""
 	print " Node: ", socket.gethostname()
 	
-	print dash
+	print dash #The top line of box
 	print formatedData #the information node wants to show
-	print dash
+	print dash #The bottom line of box
 	
 def splitPara(para, lineSize): #For when you need to organize the paragraphs for boxes
-	sentences = para.split(" ")
+	sentences = para.split(" ") #Splits long strings by the spaces. Now has list of words
 	
-	grouped = []
-	temp = ""
+	grouped = [] #Empty list created
+	temp = "" #Empty string created
 	
 	for word in sentences:
-		temp = temp + word + " "
+		temp = temp + word + " " #A temporary string slowly accumulates words
 		
-		if (len(temp) > lineSize):
-			grouped.append(temp)
-			temp = ""
-	grouped.append(temp)
+		if (len(temp) > lineSize): #When string is longer than the length of box
+			grouped.append(temp) #string's info is added as object in empty list
+			temp = "" #temporary string is reset to start this process over
+	grouped.append(temp) #The last temp will never reach the line size, so this gets the rest
 	
-	for i in range(len(grouped)):
+	for i in range(len(grouped)): #Adds the left side of box
 		grouped[i] = "|  " + grouped[i]
 	
 	return grouped
+	
+def splitParaDynamic(para): 
+	#Adjusts the boxes accoridng ot the window itself automatically
+	#May not work with MPI4py for some reason, but it is cool
+	
+	import fcntl, termios, struct
+	
+	th, tw, hp, wp = struct.unpack('HHHH', fcntl.ioctl(0, termios.TIOCGWINSZ, struct.pack('HHHH', 0, 0, 0, 0)))
 
-def updateScreen(updateConfirmed, info):
+	newParagraph = splitPara(para, (0.70*tw)) #box length is autoset to 70% of terminal screen
+	return newParagraph
+
+def updateScreen(updateConfirmed, info): #This is a bit depreciated now...
 	if (updateConfirmed == True):
 		graphics(info)
 		return False
 
-def helloTest():
-	#Test for checking if arrangement works
+def helloTest(): #Test for checking if arrangement works
 	#first declaring comm
 	comm = MPI.COMM_WORLD
 	info = lambda r : "I am rank %s." % (r)
