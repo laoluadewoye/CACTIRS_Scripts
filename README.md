@@ -25,3 +25,5 @@ demoAdd.py - The demonstration program for the entire cluster project. Utilizing
 multilineTest.py - An additional demonstration to prove the concept of multiline box display. 
 
 paragraphTest.py - An additional demonstration to prove the concept of being able to take a string, split it up, then display it in an organized manner in boxes. It utilizes the "splitPara" definition in gdisplayMod before actually displaying the data. The "linesize" parameter is the only one that must be manually set in the user's program, whether that be inputing an actual number (at least 30 is recommended), or having the number be created within the program.
+
+demoPi & demoPiMultiply - A demonstration of the differences in computation speed. DemoPi is made for one node to compute various iterations of pi, while the other is coded with MPI communication across the cluster in a scalable way.
