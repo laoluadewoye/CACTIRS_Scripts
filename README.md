@@ -1,6 +1,9 @@
 # CACTIRS_Scripts
 A place for storing files utilized in the Raspberry Pi Cluster Experiement. If trying to mimic the set up, please come here to gather the files.
 
+#Instructions
+The guide used to craft this repository can be found here https://raspberrytips.com/raspberry-pi-cluster/
+
 # Important Files
 This is where basic files will be listed. These files will be placed right into your user directory itself (in my case, /home/pi) or anywhere you choose to keep them for use. 
 
