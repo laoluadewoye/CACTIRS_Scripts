@@ -9,7 +9,7 @@ comm = MPI.COMM_WORLD
 
 rank = "| Rank: " + str(comm.Get_rank())
 size = "| Pool Size: " + str(comm.Get_size())
-name = "| " + socket.gethostname()
+name = "| " + socket.gethostname() + "_" + str(comm.Get_rank())
 data = "| Random data: " + str([randint(1, 20) for x in range(5)])
 
 displayedData = [rank, size, name, data]
