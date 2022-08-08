@@ -1,8 +1,9 @@
 # CACTIRS_Scripts
 A place for storing files utilized in the Raspberry Pi Cluster Experiement. If trying to mimic the set up, please come here to gather the files.
 
-#Instructions
+# Instructions
 The guide used to craft this repository can be found here https://raspberrytips.com/raspberry-pi-cluster/
+When you have finished the tutorial, you can install the files listed bellow
 
 # Important Files
 This is where basic files will be listed. These files will be placed right into your user directory itself (in my case, /home/pi) or anywhere you choose to keep them for use. 
@@ -15,7 +16,7 @@ testNB - used for testing the nodeBroadcast shell script. Can be used for testin
 
 # Python Files
 
-This is were python programs are kept. 
+This is were python programs are kept. They will be found in both python2 and python3 folders for compatability. 
 
 mpi4pytest.py - one of the first python programs created. It utilizes comm.broadcast distribute a copy of a dictionary from the master node to all other ndes, then prints the rank, data, and name in a list. It proves parallelism through how the rank numbers are not in one order each time ran.
 
