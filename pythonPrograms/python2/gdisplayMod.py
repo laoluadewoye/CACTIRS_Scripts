@@ -18,6 +18,7 @@ def clear(): #clears the screen
 def graphics(info): #displays single-lined info in order
 	comm = MPI.COMM_WORLD
 	rank = comm.rank
+	name = socket.gethostname() + "_" + str(rank)
 	
 	sleep(0.05*rank) #Nodes will end up organizing themselves with delay
 	
@@ -26,7 +27,7 @@ def graphics(info): #displays single-lined info in order
 		dash = dash + "-"
 	
 	print ""
-	print " Node: ", socket.gethostname()
+	print " Node: ", name
 	
 	print dash
 	print info #the information node wants to show
@@ -35,6 +36,7 @@ def graphics(info): #displays single-lined info in order
 def graphicsMultiline(info): #displays multi-lined info in order
 	comm = MPI.COMM_WORLD
 	rank = comm.rank
+	name = socket.gethostname() + "_" + str(rank)
 	boxLength = 0
 		
 	for line in info: #Creates the boxlength
@@ -61,7 +63,7 @@ def graphicsMultiline(info): #displays multi-lined info in order
 	sleep(0.05*rank) #Nodes will end up organizing themselves with delay
 	
 	print ""
-	print " Node: ", socket.gethostname()
+	print " Node: ", name
 	
 	print dash #The top line of box
 	print formatedData #the information node wants to show
@@ -108,7 +110,7 @@ def helloTest(): #Test for checking if arrangement works
 	info = lambda r : "I am rank %s." % (r)
 
 	rank = comm.rank #node establishes their rank
-	rankname = socket.gethostname() #node establishes their name
+	rankname = socket.gethostname() + "_" + str(rank) #node establishes their name
 	updateConfirmed = False #uC starts out false
 	if (updateConfirmed == False):
 		print rankname, "does not have go-ahead to update screen"
