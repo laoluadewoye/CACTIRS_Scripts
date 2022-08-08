@@ -12,7 +12,7 @@ else:
 	data = None
 
 data = comm.bcast(data, root=0)
-name = socket.gethostname()
+name = socket.gethostname() + "_" + str(rank)
 
 print("Rank:",rank)
 print("Data sent:",data)
