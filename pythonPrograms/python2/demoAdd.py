@@ -10,7 +10,7 @@ comm = MPI.COMM_WORLD
 
 rank = comm.Get_rank()
 size = comm.Get_size()
-name = socket.gethostname()
+name = socket.gethostname() + "_" + str(rank)
 
 gdisplayMod.clear()
 
